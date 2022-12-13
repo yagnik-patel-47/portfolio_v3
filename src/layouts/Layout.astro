@@ -1,0 +1,66 @@
+---
+import Nav from "../components/Nav.astro";
+const { pageTitle, pageName } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="A personal portfolio site." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <title>{pageTitle}</title>
+  </head>
+
+  <body
+    class="font-dm-sans bg-white text-[#333] dark:bg-[#181a1b] dark:text-[#dad6d1]"
+  >
+    <Nav pageName={pageName} />
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html.dark {
+    color-scheme: dark;
+  }
+  @supports not (color-scheme: dark light) {
+    html.dark ::-webkit-scrollbar {
+      background-color: #202324;
+      color: #aba499;
+    }
+
+    html.dark ::-webkit-scrollbar-corner {
+      background-color: #181a1b;
+    }
+
+    html.dark ::-webkit-scrollbar-thumb {
+      background-color: #454a4d;
+    }
+  }
+</style>
+
+<script>
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>
