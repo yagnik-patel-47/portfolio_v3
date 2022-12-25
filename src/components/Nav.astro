@@ -7,7 +7,7 @@ const { pageName } = Astro.props;
   id="nav"
 >
   <div class="flex justify-between items-center">
-    <span class="font-patrick-hands text-2xl">Yagnik Patel</span>
+    <a href="/#" class="font-patrick-hands text-2xl">Yagnik Patel</a>
     <div class="flex space-x-2 lg:space-x-10 items-center text-xl">
       {
         pageName !== "home" && (
@@ -25,7 +25,7 @@ const { pageName } = Astro.props;
       }
       {
         pageName !== "contact" && (
-          <a class="hidden lg:inline-block" href="/contact">
+          <a class="hidden lg:inline-block" href="/#contact">
             Contact
           </a>
         )
@@ -97,7 +97,7 @@ const { pageName } = Astro.props;
   >
     {pageName !== "home" && <a href="/">Home</a>}
     {pageName !== "works" && <a href="/works">Projects</a>}
-    {pageName !== "contact" && <a href="/contact">Contact</a>}
+    {pageName !== "contact" && <a href="/#contact">Contact</a>}
   </div>
 </nav>
 

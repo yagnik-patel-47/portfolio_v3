@@ -84,7 +84,7 @@ import { highlightProjects } from "../workData.js";
         }
       </div>
       <a
-        class="text-xl py-3 px-5 bg-[#d8e6ef] dark:bg-[#232628] w-fit rounded-md"
+        class="text-xl py-3 px-5 bg-[#d8e6ef] dark:bg-[#232628] hover:scale-105 w-fit rounded-md transition-[transform] duration-300"
         href="/works">See all of my works.</a
       >
     </div>
@@ -100,7 +100,10 @@ import { highlightProjects } from "../workData.js";
       </p>
     </div>
   </section>
-  <section class="lg:flex flex-col lg:flex-row mt-14 w-full mb-10 lg:mb-40">
+  <section
+    id="contact"
+    class="lg:flex flex-col lg:flex-row mt-14 w-full mb-10 lg:mb-40"
+  >
     <img
       class="w-full lg:w-1/2 h-auto"
       src="/home_show.webp"
