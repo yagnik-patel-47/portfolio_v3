@@ -116,23 +116,17 @@ const { pageName } = Astro.props;
 </style>
 
 <script>
-  // import { gsap } from "gsap";
-  // import { Flip } from "gsap/Flip";
-  // gsap.registerPlugin(Flip);
   const lightBtn = document.getElementById("light_mode_btn")!;
   const darkBtn = document.getElementById("dark_mode_btn")!;
-  // const hamburgerBtn = document.getElementById("ham_btn")!;
-  // const mobileLinks = document.getElementById("mob_links")!;
-  // const nav = document.getElementById("nav")!;
+  const ham = document.getElementById("ham_btn")!;
+  const mobile_nav = document.getElementById("mob_links")!;
 
-  // hamburgerBtn.addEventListener("click", () => {
-  //   mobileLinks.classList.toggle("hidden");
-  //   const state = Flip.getState(mobileLinks);
-  //   if (mobileLinks.classList.contains("hidden")) {
-  //   } else {
-  //     Flip.from(state, { duration: 0.5 });
-  //   }
-  // });
+  ham.addEventListener("click", () => {
+    mobile_nav.classList.toggle("hidden");
+  });
+  Array.from(mobile_nav.children).forEach((child) =>
+    child.addEventListener("click", () => mobile_nav.classList.add("hidden"))
+  );
 
   lightBtn.addEventListener("click", () => {
     lightBtn.classList.add("hidden");
