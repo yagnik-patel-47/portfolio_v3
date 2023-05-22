@@ -1,9 +1,10 @@
 ---
 const { pageName } = Astro.props;
+import ThemePopover from "@/components/ThemePopover.tsx";
 ---
 
 <nav
-  class="flex py-4 px-8 md:px-24 lg:px-40 xl:px-60 2xl:px-[26rem] flex-col sticky w-full top-0 z-50 h-auto"
+  class="flex py-4 px-8 md:px-24 lg:px-40 xl:px-60 2xl:px-[26rem] flex-col sticky w-full top-0 z-10 h-auto"
   id="nav"
 >
   <div class="flex justify-between items-center">
@@ -30,46 +31,7 @@ const { pageName } = Astro.props;
           </a>
         )
       }
-      <button
-        class="p-3 cursor-pointer"
-        aria-label="light mode"
-        id="light_mode_btn"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-          ></path>
-        </svg>
-      </button>
-      <button
-        class="p-3 cursor-pointer"
-        id="dark_mode_btn"
-        aria-label="dark mode"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-          ></path>
-        </svg>
-      </button>
+      <ThemePopover client:only="react" />
       <button
         class="p-3 cursor-pointer lg:hidden"
         id="ham_btn"
@@ -116,8 +78,6 @@ const { pageName } = Astro.props;
 </style>
 
 <script>
-  const lightBtn = document.getElementById("light_mode_btn")!;
-  const darkBtn = document.getElementById("dark_mode_btn")!;
   const ham = document.getElementById("ham_btn")!;
   const mobile_nav = document.getElementById("mob_links")!;
 
@@ -127,24 +87,4 @@ const { pageName } = Astro.props;
   Array.from(mobile_nav.children).forEach((child) =>
     child.addEventListener("click", () => mobile_nav.classList.add("hidden"))
   );
-
-  lightBtn.addEventListener("click", () => {
-    lightBtn.classList.add("hidden");
-    darkBtn.classList.remove("hidden");
-    document.documentElement.classList.remove("dark");
-    localStorage.setItem("theme", "light");
-  });
-
-  darkBtn.addEventListener("click", () => {
-    lightBtn.classList.remove("hidden");
-    darkBtn.classList.add("hidden");
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  });
-
-  if (window.localStorage.theme === "dark") {
-    darkBtn.classList.add("hidden");
-  } else {
-    lightBtn.classList.add("hidden");
-  }
 </script>
